@@ -26,7 +26,7 @@
 // let qw=confirm("Are you from?");
 // alert(qw);
 // let qw=+prompt("Are you from?", "32");
-// console.log(typeof (qw));
+// console.log(tygitpeof (qw));
 // console.log(typeof (null));
 // console.log('arr' + ' - object');
 // console.log(5 + ' - object');
