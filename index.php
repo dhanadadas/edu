@@ -8,6 +8,7 @@
     <title>Hari!</title>
 </head>
 <body>
+<h1>HARI</h1>
 <script src="index.js"></script>
 </body>
 </html>
