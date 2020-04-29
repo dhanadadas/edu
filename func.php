@@ -126,6 +126,4 @@ function reverse_fn($job)
         return $site->url;
     };
 
-
-
 }
