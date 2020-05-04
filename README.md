@@ -1,2 +1,2 @@
-# js-vanilla-edu + React
-Обучение продвинутый курс Native JS Udemy
+# Js-vanilla + React
+Обучение продвинутый курс Native JS + React / Udemy
