@@ -23,13 +23,13 @@ window.addEventListener("DOMContentLoaded", function () {
 	info.addEventListener('click', function (event) {
 		let target = event.target;
 		if (target && target.classList.contains('info-header-tab')) {
-		    for (let i = 0; i < tab.length; i++){
-		        if (target == tab[i]){
-		          hideTabContent(0);
-		          showTabContent(i);
-		          break;
-            };
-        };
+			for (let i = 0; i < tab.length; i++){
+				if (target == tab[i]){
+					hideTabContent(0);
+					showTabContent(i);
+					break;
+				};
+			};
 		}
 	});
 
@@ -37,7 +37,7 @@ window.addEventListener("DOMContentLoaded", function () {
 	let deadLine = '2020-04-30';
 	function getTimeRemaining(endtime) {
 		let t = Date.parse(deadLine)- Date.parse(new Date()),
-		seconds   = Math.floor( (t/1000) % 60),
+			seconds   = Math.floor( (t/1000) % 60),
 			minutes = Math.floor( (t/1000/60) % 60),
 			hours   =  Math.floor( (t/1000/60/60) );
 		//day     = Math.floor( (t/1000*60*60*24) );
@@ -45,29 +45,29 @@ window.addEventListener("DOMContentLoaded", function () {
 			'total':t,
 			'seconds':seconds,
 			'minutes':minutes,
-		    'hours':hours
+			'hours':hours
 		};
 	}
 
 
 	function setClock(id,endtime) {
-			let timer = document.getElementById(id),
-				hours   = timer.querySelector('.hours'),
-				minutes = timer.querySelector('.minutes'),
-				seconds = timer.querySelector('.seconds'),
-				timeInterval = setInterval(updateClock,1000);
-			function updateClock() {
-				let t = getTimeRemaining(endtime);
-				if ( t.hours<=9) hours.textContent = "0" + t.hours; else hours.textContent = t.hours;
-				if ( t.minutes<=9) minutes.textContent = "0" + t.minutes; else minutes.textContent = t.minutes;
-				if ( t.seconds<=9) seconds.textContent = "0" + t.seconds; else seconds.textContent = t.seconds;
+		let timer = document.getElementById(id),
+			hours   = timer.querySelector('.hours'),
+			minutes = timer.querySelector('.minutes'),
+			seconds = timer.querySelector('.seconds'),
+			timeInterval = setInterval(updateClock,1000);
+		function updateClock() {
+			let t = getTimeRemaining(endtime);
+			if ( t.hours<=9) hours.textContent = "0" + t.hours; else hours.textContent = t.hours;
+			if ( t.minutes<=9) minutes.textContent = "0" + t.minutes; else minutes.textContent = t.minutes;
+			if ( t.seconds<=9) seconds.textContent = "0" + t.seconds; else seconds.textContent = t.seconds;
 
-				if (t.total<0){
-					clearInterval(timeInterval);
-				}
+			if (t.total<0){
+				clearInterval(timeInterval);
 			}
 		}
-		setClock('timer' , deadLine);
+	}
+	setClock('timer' , deadLine);
 
 	/*
 	 * Модальное окно
@@ -95,4 +95,23 @@ window.addEventListener("DOMContentLoaded", function () {
 		btn.addEventListener('click',show);
 	})
 });
+
+class Options {
+	constructor(heigth, width, bg, fontSize, textAlign) {
+		this.heigth = heigth;
+		this.width = width;
+		this.bg = bg;
+		this.fontSize = fontSize;
+		this.textAlign = textAlign;
+	}
+	createDiv(){
+		var div=document.createElement('div');
+		div.style.cssText=`height:${this.heigth}px;width:${this.width}px;font-size:${this.fontSize}px;text-align:${this.textAlign};background:${this.bg}`;
+		div.textContent = "Харибол!";
+		document.body.appendChild(div);
+	}
+}
+const div = new  Options(100,200,'red',14,'center');
+div.createDiv();
+
 
