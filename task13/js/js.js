@@ -172,6 +172,7 @@ function sendAjaxJson(formEvent) {
 		console.log(input);
 	}
 }
+
 function sendAjaxData(formEvent) {
 	/*
 	 * Вариант ajax с DATA
