@@ -1,34 +1,27 @@
+
 let inputRub = document.getElementById('rub'),
-  inputUsd = document.getElementById('usd');
+    inputUsd = document.getElementById('usd');
 
-//Вариант с XMLHttpRequest
-const getCurrentRubToUsd = function () {
-    return new Promise( function (resolve, reject) {
+inputRub.addEventListener('input', () => {
+    function func() {
         let request = new XMLHttpRequest();
-
+        return new Promise(function (resolve,reject) {
         request.open('GET', 'js/current.json');
         request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+        request.send();
 
-        request.onload = function () {
-            if (request.readyState !== 4) {
-                reject(new Error("Ошибка"));
-            } else {
+        request.addEventListener('load', function () {
+            if (request.readyState === 4 && request.status == 200) {
                 let data = JSON.parse(request.response);
                 resolve(data);
+            } else {
+                reject();
             }
-        };
-
-        request.onerror = function () {
-            reject(new Error('Что-то пошло не так!'));
-        };
-
-        request.send();
+        });
     });
-};
-
-inputRub.addEventListener('input', function ()
-    {
-    getCurrentRubToUsd()
-      .then(data => inputUsd.value = (inputRub.value / data.usd).toFixed(2))
-      .catch(error => inputUsd.value = error.message);
+    }
+    func()
+      .then((data)=>{inputUsd.value = inputRub.value / data.usd;})
+      .catch(()=>{inputUsd.value = "Что-то пошло не так!";});
 });
+
