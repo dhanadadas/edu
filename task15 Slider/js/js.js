@@ -33,8 +33,13 @@ window.addEventListener("DOMContentLoaded", function () {
 		}
 	});
 
+	function getTomorrow() {
+		var D = new Date();
+		D.setDate(D.getDate() + 1);
+		return D;
+	}
 	// timer
-	let deadLine = '2020-04-30';
+	let deadLine = getTomorrow();
 	function getTimeRemaining(endtime) {
 		let t = Date.parse(deadLine)- Date.parse(new Date()),
 			seconds   = Math.floor( (t/1000) % 60),

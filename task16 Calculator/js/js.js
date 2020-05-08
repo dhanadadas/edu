@@ -33,8 +33,13 @@ window.addEventListener("DOMContentLoaded", function () {
 		}
 	});
 
+	function getTomorrow() {
+		var D = new Date();
+		D.setDate(D.getDate() + 1);
+		return D;
+	}
 	// timer
-	let deadLine = '2020-04-30';
+	let deadLine = getTomorrow();
 	function getTimeRemaining(endtime) {
 		let t = Date.parse(deadLine)- Date.parse(new Date()),
 			seconds   = Math.floor( (t/1000) % 60),
@@ -225,5 +230,48 @@ dotsWrap.addEventListener('click', function (event) {
 		if (event.target.classList.contains('dot') && event.target == dots[i-1]){
 			currentSlider(i);
 		}
+	}
+});
+
+// калькулятор
+let persons = document.querySelectorAll('.counter-block-input')[0],
+	restDay   = document.querySelectorAll('.counter-block-input')[1],
+	place   = document.getElementById('select'),
+	totalValue   = document.getElementById('total'),
+	personsSum = 0,
+	daysSum = 0,
+	total = 0;
+
+	persons.addEventListener('input', function () {
+		personsSum = +this.value;
+		total = (daysSum + personsSum) * 4000;
+
+		if (restDay.value === '' || persons.value === ''){
+			totalValue.innerHTML = 0;
+		} else {
+			var costPlace = place.value;
+			totalValue.innerHTML = total*costPlace;
+		}
+	});
+console.log(persons);
+restDay.addEventListener('input', function () {
+	daysSum = +this.value;
+	total = (daysSum + personsSum) * 4000;
+
+	if (restDay.value === '' || persons.value === ''){
+		totalValue.innerHTML = 0;
+	} else {
+		var costPlace = place.value;
+		totalValue.innerHTML = total*costPlace;
+	}
+});
+
+place.addEventListener('change', function () {
+	checkPlace(this);
+	if (restDay.value === '' || persons.value === ''){
+		totalValue.innerHTML = 0;
+	}else {
+		let a = total;
+		totalValue.innerHTML = a * this.options[this.selectedIndex].value;
 	}
 });
