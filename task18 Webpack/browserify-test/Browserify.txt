@@ -1,0 +1,1 @@
+Browserify src/js/script.js -o dist/bundle.js
